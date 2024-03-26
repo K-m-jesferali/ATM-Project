@@ -2,9 +2,9 @@ import mysql.connector
 from mysql.connector import Error 
 
 mydb=mysql.connector.connect(
-    host="127.0.0.1",
+    host="localhost",
     user="root",
-    password="root",
+    password="",#your server password
     database="atm"
 )
 mycursor = mydb.cursor()
@@ -21,14 +21,14 @@ if n==0:
     name=input("Enter name: ")
     accn=int(input("Enter account no: "))
     t=int(input("Enter Deposit Amount"))
-    pw=int(input("Set Your Password:"))
+    pw=(input("Set Your Password:"))
 
     myname=name
     password=pw
     deposit=t
     id=accn
 
-    val=(myname,password,depo,id)
+    val=(myname,password,t,id)
 
     sql= """insert into user_data(my_name, pass_word, de_po, i_d) 
            values(%s,%s,%s,%s) """
@@ -39,7 +39,7 @@ if n==0:
 
 if n==1:
     info= int(input("Enter ur id: "))
-    passw=int(input("Enter the password: "))
+    passw=(input("Enter the password: "))
     mycursor.execute("select * from atm.user_data where i_d=%s"%(info)) 
     row=mycursor.fetchone()
 
